@@ -107,6 +107,27 @@ wheels = [
 ]
 
 [[package]]
+name = "click"
+version = "8.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/60/6c/8ca2efa64cf75a977a0d7fac081354553ebe483345c734fb6b6515d96bbc/click-8.2.1.tar.gz", hash = "sha256:27c491cc05d968d271d5a1db13e3b5a184636d9d930f148c50b038f0d0646202", size = 286342 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/85/32/10bb5764d90a8eee674e9dc6f4db6a0ab47c8c4d0d83c27f7c39ac415a4d/click-8.2.1-py3-none-any.whl", hash = "sha256:61a3265b914e850b85317d0b3109c7f8cd35a670f963866005d6ef1d5175a12b", size = 102215 },
+]
+
+[[package]]
+name = "colorama"
+version = "0.4.6"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d8/53/6f443c9a4a8358a93a6792e2acffb9d9d5cb0a5cfd8802644b7b1c9a02e4/colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44", size = 27697 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d1/d6/3965ed04c63042e047cb6a3e6ed1a63a35087b6a609aa3a15ed8ac56c221/colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6", size = 25335 },
+]
+
+[[package]]
 name = "h11"
 version = "0.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -141,6 +162,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/b1/df/48c586a5fe32a0f01324ee087459e112ebb7224f646c0b5023f5e79e9956/httpx-0.28.1.tar.gz", hash = "sha256:75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc", size = 141406 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl", hash = "sha256:d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad", size = 73517 },
+]
+
+[[package]]
+name = "httpx-sse"
+version = "0.4.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/4c/60/8f4281fa9bbf3c8034fd54c0e7412e66edbab6bc74c4996bd616f8d0406e/httpx-sse-0.4.0.tar.gz", hash = "sha256:1e81a3a3070ce322add1d3529ed42eb5f70817f45ed6ec915ab753f961139721", size = 12624 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e1/9b/a181f281f65d776426002f330c31849b86b31fc9d848db62e16f03ff739f/httpx_sse-0.4.0-py3-none-any.whl", hash = "sha256:f329af6eae57eaa2bdfd962b42524764af68075ea87370a2de920af5341e318f", size = 7819 },
 ]
 
 [[package]]
@@ -227,12 +257,14 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "langgraph" },
+    { name = "mcp" },
     { name = "python-dotenv" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "langgraph", specifier = "==0.4.5" },
+    { name = "mcp", specifier = "==1.9.0" },
     { name = "python-dotenv", specifier = "==1.1.0" },
 ]
 
@@ -278,6 +310,26 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/3a/44/fe171c0b0fb0377b191aebf0b7779e0c7b2a53693c6a01ddad737212495d/langsmith-0.3.42.tar.gz", hash = "sha256:2b5cbc450ab808b992362aac6943bb1d285579aa68a3a8be901d30a393458f25", size = 345619 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/89/8e/e8a58e0abaae3f3ac4702e9ca35d1fc6159711556b64ffd0e247771a3f12/langsmith-0.3.42-py3-none-any.whl", hash = "sha256:18114327f3364385dae4026ebfd57d1c1cb46d8f80931098f0f10abe533475ff", size = 360334 },
+]
+
+[[package]]
+name = "mcp"
+version = "1.9.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "httpx" },
+    { name = "httpx-sse" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "python-multipart" },
+    { name = "sse-starlette" },
+    { name = "starlette" },
+    { name = "uvicorn", marker = "sys_platform != 'emscripten'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/bc/8d/0f4468582e9e97b0a24604b585c651dfd2144300ecffd1c06a680f5c8861/mcp-1.9.0.tar.gz", hash = "sha256:905d8d208baf7e3e71d70c82803b89112e321581bcd2530f9de0fe4103d28749", size = 281432 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a5/d5/22e36c95c83c80eb47c83f231095419cf57cf5cca5416f1c960032074c78/mcp-1.9.0-py3-none-any.whl", hash = "sha256:9dfb89c8c56f742da10a5910a1f64b0d2ac2c3ed2bd572ddb1cfab7f35957178", size = 125082 },
 ]
 
 [[package]]
@@ -418,12 +470,35 @@ wheels = [
 ]
 
 [[package]]
+name = "pydantic-settings"
+version = "2.9.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pydantic" },
+    { name = "python-dotenv" },
+    { name = "typing-inspection" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/67/1d/42628a2c33e93f8e9acbde0d5d735fa0850f3e6a2f8cb1eb6c40b9a732ac/pydantic_settings-2.9.1.tar.gz", hash = "sha256:c509bf79d27563add44e8446233359004ed85066cd096d8b510f715e6ef5d268", size = 163234 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b6/5f/d6d641b490fd3ec2c4c13b4244d68deea3a1b970a97be64f34fb5504ff72/pydantic_settings-2.9.1-py3-none-any.whl", hash = "sha256:59b4f431b1defb26fe620c71a7d3968a710d719f5f4cdbbdb7926edeb770f6ef", size = 44356 },
+]
+
+[[package]]
 name = "python-dotenv"
 version = "1.1.0"
 source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/88/2c/7bb1416c5620485aa793f2de31d3df393d3686aa8a8506d11e10e13c5baf/python_dotenv-1.1.0.tar.gz", hash = "sha256:41f90bc6f5f177fb41f53e87666db362025010eb28f60a01c9143bfa33a2b2d5", size = 39920 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1e/18/98a99ad95133c6a6e2005fe89faedf294a748bd5dc803008059409ac9b1e/python_dotenv-1.1.0-py3-none-any.whl", hash = "sha256:d7c01d9e2293916c18baf562d95698754b0dbbb5e74d457c45d4f6561fb9d55d", size = 20256 },
+]
+
+[[package]]
+name = "python-multipart"
+version = "0.0.20"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f3/87/f44d7c9f274c7ee665a29b885ec97089ec5dc034c7f3fafa03da9e39a09e/python_multipart-0.0.20.tar.gz", hash = "sha256:8dd0cab45b8e23064ae09147625994d090fa46f5b0d1e13af944c331a7fa9d13", size = 37158 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/45/58/38b5afbc1a800eeea951b9285d3912613f2603bdf897a4ab0f4bd7f405fc/python_multipart-0.0.20-py3-none-any.whl", hash = "sha256:8a62d3a8335e06589fe01f2a3e178cdcc632f3fbe0d492ad9ee0ec35aab1f104", size = 24546 },
 ]
 
 [[package]]
@@ -489,6 +564,31 @@ wheels = [
 ]
 
 [[package]]
+name = "sse-starlette"
+version = "2.3.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+    { name = "starlette" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/10/5f/28f45b1ff14bee871bacafd0a97213f7ec70e389939a80c60c0fb72a9fc9/sse_starlette-2.3.5.tar.gz", hash = "sha256:228357b6e42dcc73a427990e2b4a03c023e2495ecee82e14f07ba15077e334b2", size = 17511 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c8/48/3e49cf0f64961656402c0023edbc51844fe17afe53ab50e958a6dbbbd499/sse_starlette-2.3.5-py3-none-any.whl", hash = "sha256:251708539a335570f10eaaa21d1848a10c42ee6dc3a9cf37ef42266cdb1c52a8", size = 10233 },
+]
+
+[[package]]
+name = "starlette"
+version = "0.46.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "anyio" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/ce/20/08dfcd9c983f6a6f4a1000d934b9e6d626cff8d2eeb77a89a68eef20a2b7/starlette-0.46.2.tar.gz", hash = "sha256:7f7361f34eed179294600af672f565727419830b54b7b084efe44bb82d2fccd5", size = 2580846 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8b/0c/9d30a4ebeb6db2b25a841afbb80f6ef9a854fc3b41be131d249a977b4959/starlette-0.46.2-py3-none-any.whl", hash = "sha256:595633ce89f8ffa71a015caed34a5b2dc1c0cdb3f0f1fbd1e69339cf2abeec35", size = 72037 },
+]
+
+[[package]]
 name = "tenacity"
 version = "9.1.2"
 source = { registry = "https://pypi.org/simple" }
@@ -525,6 +625,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/8a/78/16493d9c386d8e60e442a35feac5e00f0913c0f4b7c217c11e8ec2ff53e0/urllib3-2.4.0.tar.gz", hash = "sha256:414bc6535b787febd7567804cc015fee39daab8ad86268f1310a9250697de466", size = 390672 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6b/11/cc635220681e93a0183390e26485430ca2c7b5f9d33b15c74c2861cb8091/urllib3-2.4.0-py3-none-any.whl", hash = "sha256:4e16665048960a0900c702d4a66415956a584919c03361cac9f1df5c5dd7e813", size = 128680 },
+]
+
+[[package]]
+name = "uvicorn"
+version = "0.34.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "h11" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a6/ae/9bbb19b9e1c450cf9ecaef06463e40234d98d95bf572fab11b4f19ae5ded/uvicorn-0.34.2.tar.gz", hash = "sha256:0e929828f6186353a80b58ea719861d2629d766293b6d19baf086ba31d4f3328", size = 76815 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b1/4b/4cef6ce21a2aaca9d852a6e84ef4f135d99fcd74fa75105e2fc0c8308acd/uvicorn-0.34.2-py3-none-any.whl", hash = "sha256:deb49af569084536d269fe0a6d67e3754f104cf03aba7c11c40f01aadf33c403", size = 62483 },
 ]
 
 [[package]]

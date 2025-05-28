@@ -8,6 +8,8 @@ MAX_MODEL_LEN="$max_model_len"
 
 exec /root/.local/bin/uv run vllm serve \
     "./Qwen/Qwen3-4B" \
+    --enable-auto-tool-choice \
+    --tool-call-parser hermes \
     --host "0.0.0.0" \
     --port "8000"\
     --gpu-memory-utilization "0.95"\

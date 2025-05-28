@@ -1,0 +1,11 @@
+[project]
+name = "model_build"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "vllm==0.8.4",
+    "setuptools==79.0.1",
+]
+

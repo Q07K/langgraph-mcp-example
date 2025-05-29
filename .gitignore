@@ -174,4 +174,4 @@ cython_debug/
 .pypirc
 
 # LLM 
-app/llm/Qwen/Qwen3-4B
+llm/Qwen/Qwen3-4B

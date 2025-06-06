@@ -10,12 +10,12 @@
 
 ### LLM 설치
 ```shell
-uv run ./app/llm/save_llm.py
+uv run ./llm/save_llm.py
 ```
 
 ### Docker build
 ```shell
-cd app/llm
+cd ./llm
 docker build -t qwen3-4b:v1.0.0 .
 ```
 
@@ -48,27 +48,6 @@ docker run --gpus all -it -p 8000:8000 -e api_key="test" -e dtype="float16" -e m
 ```
 
 ## 실행 테스트
-```python
-import time
-from openai import OpenAI
-
-client = OpenAI(
-    base_url="http://localhost:8000/v1",
-    api_key="test",
-)
-
-response = client.chat.completions.create(
-    model="./Qwen/Qwen3-4B",
-    messages=[
-        {"role": "system", "content": "너는 어떤 질문에도 정답을 말해야해"},
-        {"role": "user", "content": "hi"},
-    ],
-    stream=True,
-)
-
-for chunk in response:
-    content = chunk.choices[0].delta.content
-    if content is not None:
-        print(content, end="", flush=True)
-        
+```shell
+uv run ./run_llm.py
 ```

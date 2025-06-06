@@ -25,7 +25,7 @@ async def ai_message(agent: CompiledGraph, messages: list[dict[str, str]]):
         messages=messages,
     ):
         if message.type == "tool":
-            with st.popover(f"🛠️[{message.name}]"):
+            with st.popover(f"🛠️: {message.name}"):
                 st.json(message)
     else:
         content = message.content

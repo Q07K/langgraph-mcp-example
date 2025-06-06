@@ -1,0 +1,17 @@
+{
+    "mcpServers": {
+        "time": {
+            "url": "http://localhost:8005/sse"
+        },
+        "notion": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@suekou/mcp-notion-server"
+            ],
+            "env": {
+                "NOTION_API_TOKEN": "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"
+            }
+        }
+    }
+}

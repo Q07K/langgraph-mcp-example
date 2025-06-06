@@ -33,16 +33,9 @@ tools = [
 response = client.chat.completions.create(
     model="./Qwen/Qwen3-4B",
     messages=[
-        # {"role": "system", "content": "/no_think"},
         {"role": "user", "content": "오늘 서울 날씨가 어떄?"},
     ],
-    # stream=True,
     tools=tools,
     tool_choice="auto",
 )
 print(response)
-
-# for chunk in response:
-#     content = chunk.choices[0].delta.content
-#     if content is not None:
-#         print(content, end="", flush=True)

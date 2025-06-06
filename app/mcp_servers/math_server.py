@@ -2,12 +2,7 @@
 from mcp.server.fastmcp import FastMCP
 
 # 이름으로 MCP 서버 초기화
-mcp = FastMCP(
-    "Math",  # Name of the MCP server
-    instructions="You are a Math assistant that can provide the current Math",  # Instructions for the LLM on how to use this tool
-    host="0.0.0.0",  # Host address (0.0.0.0 allows connections from any IP)
-    port=8005,  # Port number for the server
-)
+mcp = FastMCP(name="Math")
 
 
 @mcp.tool()
@@ -48,5 +43,4 @@ def configure_assistant(skills: str) -> list[dict]:
 
 if __name__ == "__main__":
     # stdio 전송을 사용하여 서버 실행
-    print("Starting Math MCP server via stdio...")
-    mcp.run(transport="sse")
+    mcp.run(transport="stdio")

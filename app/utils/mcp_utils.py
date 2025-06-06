@@ -1,26 +1,52 @@
 import json
 
+MCP_SERVERS_PATH = "./mcp_servers.json"
 
-def load_mcp_config():
+
+def save_mcp_server(str_input: str):
+    """현재 디렉토리의 MCP 설정 파일에 저장"""
+    server: dict = json.loads("{" + str_input + "}")
+    server_names = server.keys()
+
+    try:
+        with open(file=MCP_SERVERS_PATH, mode="r", encoding="utf-8") as f:
+            raw_data = json.load(f)
+    except Exception as e:
+        return f"설정 파일을 읽는 중 오류 발생: {str(e)}"
+
+    try:
+        with open(file=MCP_SERVERS_PATH, mode="w", encoding="utf-8") as f:
+            if raw_data.get("mcpServers", None) is None:
+                raw_data["mcpServers"] = {}
+            for server_name in server_names:
+                if not raw_data["mcpServers"].get(server_name, False):
+                    raw_data["mcpServers"][server_name] = server[server_name]
+
+            return json.dump(raw_data, f)
+
+    except Exception as e:
+        return f"설정 파일을 추가하는 중 오류 발생: {str(e)}"
+
+
+def load_mcp_server():
     """현재 디렉토리의 MCP 설정 파일을 로드"""
     try:
-        with open(file="./mcp_servers.json", mode="r", encoding="utf-8") as f:
+        with open(file=MCP_SERVERS_PATH, mode="r", encoding="utf-8") as f:
             return json.load(f)
     except Exception as e:
-        print(f"설정 파일을 읽는 중 오류 발생: {str(e)}")
-        return None
+        return f"설정 파일을 읽는 중 오류 발생: {str(e)}"
 
 
-def set_mcp_config():
+def set_mcp_server():
     """MCP 서버 설정을 생성"""
-    config = load_mcp_config()
+    server = load_mcp_server()
     server_config = {}
 
-    if config.get("mcpServers", None) is None:
+    if server.get("mcpServers", None) is None:
         return server_config
 
-    config = config.get("mcpServers")
-    for server_name, server_config_data in config.items():
+    server = server.get("mcpServers")
+    for server_name, server_config_data in server.items():
         # command가 있으면 stdio 방식
         if "command" in server_config_data:
             server_config[server_name] = {
@@ -40,4 +66,4 @@ def set_mcp_config():
 
 
 if __name__ == "__main__":
-    print(set_mcp_config())
+    print(set_mcp_server())

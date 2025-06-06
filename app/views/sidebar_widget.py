@@ -1,6 +1,6 @@
 import streamlit as st
 
-from app.utils.mcp_utils import set_mcp_config
+from app.utils.mcp_utils import set_mcp_server
 from app.views import llm_widget, mcp_widget
 from app.views.dialog_widget import add_mcp_server
 
@@ -13,7 +13,7 @@ def sidebar() -> None:
     st.divider()
 
     st.title("MCP Servers")
-    server_config = set_mcp_config()
+    server_config = set_mcp_server()
     mcp_widget.view_mcp_servers(
         mcp_servers=server_config,
     )

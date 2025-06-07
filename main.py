@@ -4,9 +4,13 @@ import platform
 import nest_asyncio
 import openai
 import streamlit as st
+from dotenv import load_dotenv
 
 from app.services.mcp_client import connect_client
 from app.views import chat_widget, sidebar_widget
+
+load_dotenv()
+
 
 # Windows에서 Proactor 이벤트 루프 사용 설정
 if platform.system() == "Windows":

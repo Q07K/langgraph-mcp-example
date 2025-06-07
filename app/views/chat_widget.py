@@ -5,6 +5,10 @@ from app.models import chat_model
 from app.services.mcp_client import astream_agent
 
 
+def reset_history() -> None:
+    st.session_state["messages"] = []
+
+
 def view_messages(messages: list[dict]) -> None:
     with st.container():
         for message in messages:

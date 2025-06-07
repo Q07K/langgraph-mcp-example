@@ -2,6 +2,7 @@ import streamlit as st
 
 from app.utils.mcp_utils import set_mcp_server
 from app.views import llm_widget, mcp_widget
+from app.views.chat_widget import reset_history
 from app.views.dialog_widget import add_mcp_server
 
 
@@ -18,9 +19,14 @@ def sidebar() -> None:
         mcp_servers=server_config,
     )
     st.divider()
-    _, col, _ = st.columns([0.2, 0.6, 0.2])
-    col.button(
+    col1, col2 = st.columns(2, gap="large")
+    col1.button(
         label="Add",
         use_container_width=True,
         on_click=add_mcp_server,
+    )
+    col2.button(
+        label="Chat Reset",
+        use_container_width=True,
+        on_click=reset_history,
     )

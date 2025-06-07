@@ -1,17 +1,15 @@
+import os
+
 import streamlit as st
 
-LLM_LIST = [
-    "./Qwen/Qwen2.5-7B-Instruct",
-    # "./Qwen/Qwen3-4B",
-    "./Qwen/Qwen3-8B",
-]
+MODELS = os.getenv("MODELS", "").split(", ")
 
 
 def view_llm_list():
     st.markdown("**Select Model**")
     st.selectbox(
         label="LLM",
-        options=LLM_LIST,
+        options=MODELS,
         key="selected_llm",
         index=0,
         label_visibility="collapsed",

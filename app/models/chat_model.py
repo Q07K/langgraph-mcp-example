@@ -1,3 +1,6 @@
+"""chat model"""
+
+
 def user_message(content: str) -> dict[str, str]:
     """User Message를 나타내는 딕셔너리 생성
 

@@ -4,6 +4,7 @@ import sys
 from openai import OpenAI
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+
 client = OpenAI(
     base_url="http://localhost:8000/v1",
     api_key="test",
@@ -33,7 +34,7 @@ tools = [
 response = client.chat.completions.create(
     model="./Qwen/Qwen3-4B",
     messages=[
-        {"role": "user", "content": "오늘 서울 날씨가 어떄?"},
+        {"role": "user", "content": "get weather in seoul"},
     ],
     tools=tools,
     tool_choice="auto",

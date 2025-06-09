@@ -7,9 +7,7 @@ load_dotenv()
 
 login(token=os.getenv("HUGGINGFACE_TOKEN"))
 
-
 repo_id = "Qwen/Qwen3-4B"
-
 model_path = snapshot_download(
     repo_id=repo_id, local_dir="llm/" + repo_id + "/"
 )

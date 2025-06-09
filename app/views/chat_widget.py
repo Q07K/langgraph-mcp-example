@@ -58,7 +58,7 @@ def chat_input() -> dict | None:
 async def ai_message(
     agent: CompiledGraph,
     messages: list[dict[str, str]],
-) -> AsyncGenerator[str, None, None]:
+) -> AsyncGenerator[str, None]:
     """AI 에이전트의 응답을 스트리밍하고 UI에 진행 상황을 표시합니다.
 
     비동기 제너레이터로 AI 에이전트(`astream_agent`)를 호출하여 응답을
@@ -78,7 +78,7 @@ async def ai_message(
 
     Yields
     ------
-    AsyncGenerator[str, None]
+    Any
         AI 에이전트의 각 노드가 생성하는 응답 텍스트의 스트리밍 청크(chunk)
     """
     async for message in astream_agent(

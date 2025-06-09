@@ -1,10 +1,14 @@
 # langgraph-mcp-example
 
 ## 1. 기본 설정
-.env
-```text
 
-``` 
+### `.env` 파일 생성
+```text
+HUGGINGFACE_TOKEN = "허깅페이스 API KEY 입력"
+API_KEY = "vLLM에서 사용할 API KEY 입력"
+MODELS = "./Qwen/Qwen3-4B, "  # 사용 할 모델 목록을 ", "를 기준으로 추가 가능
+```
+
 
 ## 2. LLM 설치 및 실행
 
@@ -24,8 +28,24 @@ docker build -t qwen3-4b:v1.0.0 .
 docker run --gpus all -it -p 8000:8000 -e api_key="..." -e dtype="auto" -e max_num_seqs="1" -e max_model_len="32k" qwen3-4b:v1.0.0
 ```
 
+## 3. Streamlit 실행
+### 가상환경 활성화
+**windows**
+```shell
+.\.venv\Scripts\activate
+```
 
-# Local test
+**Linux**
+```shell
+source .\.venv\bin\activate
+```
+
+### strteamlit 실행
+```shell
+streamlit run ./main.py
+```
+
+# Local Run
 
 ## 실행 환경 정보
 - **CPU:** Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz
@@ -50,4 +70,9 @@ docker run --gpus all -it -p 8000:8000 -e api_key="test" -e dtype="float16" -e m
 ## 실행 테스트
 ```shell
 uv run ./run_llm.py
+```
+
+## streamlit 실행
+```shell
+streamlit run ./main.py
 ```

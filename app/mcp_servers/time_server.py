@@ -1,3 +1,5 @@
+"""MCP Server time"""
+
 from datetime import datetime
 
 from mcp.server.fastmcp import FastMCP

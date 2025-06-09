@@ -1,4 +1,5 @@
-# math_server.py
+"""MCP Server file"""
+
 import os
 
 from mcp.server.fastmcp import FastMCP

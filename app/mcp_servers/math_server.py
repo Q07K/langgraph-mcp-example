@@ -1,4 +1,5 @@
-# math_server.py
+"""MCP Server math"""
+
 from mcp.server.fastmcp import FastMCP
 
 # 이름으로 MCP 서버 초기화

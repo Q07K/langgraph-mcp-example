@@ -55,7 +55,7 @@ def chat_input() -> dict | None:
         입력이 없을 경우 None을 반환합니다.
     """
     user_input = st.chat_input()
-    if user_input is not None:
+    if user_input:
         return chat_model.user_message(content=user_input)
     return None
 

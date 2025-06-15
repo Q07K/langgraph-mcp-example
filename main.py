@@ -53,7 +53,7 @@ def main():
 async def generate():
     with st.spinner("MCP 서버 연결 중..."):
         agent = await connect_client(
-            model=st.session_state["selected_llm"],
+            model_name=st.session_state["selected_llm"],
             base_url=st.session_state["base_url"],
             api_key=st.session_state["api_key"],
             mcp_server_config=st.session_state["mcp_servers"],

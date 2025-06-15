@@ -3,27 +3,28 @@
 from typing import AsyncGenerator
 
 from langchain_mcp_adapters.client import MultiServerMCPClient
-from langchain_openai import ChatOpenAI
 from langgraph.graph.graph import CompiledGraph
-from langgraph.prebuilt import create_react_agent
+
+from app.services.agent import custom_create_react_agent
+from app.utils.agent_utils import connect_llm
 
 
 async def connect_client(
-    model: str,
+    model_name: str,
     base_url: str,
     api_key: str,
     mcp_server_config: dict,
 ) -> CompiledGraph:
     """LLM과 MCP 도구를 결합한 LangGraph 에이전트를 생성합니다.
 
-    전달받은 인증 정보로 `ChatOpenAI` 모델을 초기화하고, MCP Server 설정으로
+    전달받은 인증 정보로 `ChatOpenAI` 모델을 초기화하고, `mcp_server_config`로
     `MultiServerMCPClient`를 생성합니다. 클라이언트에서 사용 가능한 도구(tools)를
-    가져온 뒤, 모델과 도구를 `create_react_agent` 함수에 전달하여 최종적으로
+    가져온 뒤, 모델과 도구를 `custom_create_react_agent` 함수에 전달하여 최종적으로
     실행 가능한 대화형 에이전트를 구성하고 반환합니다.
 
     Parameters
     ----------
-    model : str
+    model_name : str
         사용할 LLM 모델의 이름.
     base_url : str
         LLM API의 Base URL.
@@ -37,17 +38,16 @@ async def connect_client(
     CompiledGraph
         LLM과 MCP 도구가 결합된, 실행 준비가 완료된 LangGraph 에이전트.
     """
-    model = ChatOpenAI(
-        model=model,
+    model = connect_llm(
+        model_name=model_name,
         base_url=base_url,
         api_key=api_key,
-        temperature=0.4,
     )
 
     client = MultiServerMCPClient(connections=mcp_server_config)
     tools = await client.get_tools()
 
-    agent = create_react_agent(model, tools)
+    agent = custom_create_react_agent(model, tools)
     return agent
 
 
